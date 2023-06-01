@@ -1,3 +1,5 @@
+"use client";
+
 import { Category } from "@/components/rules/category";
 
 export default function Home() {

@@ -1,7 +1,6 @@
 "use client";
 
-import { Category } from "@/components/rules/category";
-import { Difficulty } from "@/components/rules/difficulty";
+import { Rules } from "@/components/rules";
 
 export default function Home() {
   return (
@@ -9,13 +8,7 @@ export default function Home() {
       <div className="mb-8">
         <h2>Let&apos;s play a game.</h2>
       </div>
-      <div>
-        <h4>Rules</h4>
-        <div className="flex">
-          <Category />
-          <Difficulty />
-        </div>
-      </div>
+      <Rules />
     </main>
   );
 }

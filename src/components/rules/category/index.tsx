@@ -18,7 +18,9 @@ export const Category = () => {
       </option>
       {categories &&
         categories.trivia_categories.map(({ id, name }) => (
-          <option key={id}>{name}</option>
+          <option key={id} value={id}>
+            {name}
+          </option>
         ))}
     </select>
   );

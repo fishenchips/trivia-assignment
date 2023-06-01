@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-import { Categories } from "./types";
+import type { Categories } from "./types";
 
 const getCategories = async (): Promise<Categories> =>
   (await fetch("https://opentdb.com/api_category.php")).json();

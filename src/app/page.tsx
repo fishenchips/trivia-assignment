@@ -1,6 +1,7 @@
 "use client";
 
 import { Category } from "@/components/rules/category";
+import { Difficulty } from "@/components/rules/difficulty";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <h4>Rules</h4>
         <div className="flex">
           <Category />
+          <Difficulty />
         </div>
       </div>
     </main>

@@ -3,6 +3,7 @@ import { SyntheticEvent, useRef } from "react";
 import { Category } from "@/components/rules/category";
 import { Difficulty } from "@/components/rules/difficulty";
 import { useGetQuestions } from "@/queries/get-questions";
+import { ResetToken } from "../reset-token";
 
 export const Rules = () => {
   const difficultyRef = useRef<HTMLSelectElement>(null);
@@ -16,6 +17,12 @@ export const Rules = () => {
     e.preventDefault();
     console.log(difficultyRef.current?.value);
   };
+
+  console.log(questions);
+
+  if (questions?.response_code === 4) {
+    return <ResetToken />;
+  }
 
   return (
     <div>

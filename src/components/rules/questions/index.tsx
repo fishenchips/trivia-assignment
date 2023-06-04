@@ -10,11 +10,11 @@ export const Questions: React.FC<Props> = ({ questions }) => {
   console.log(questions, "down");
   return (
     <div>
-      {questions.map((q) =>
+      {questions.map((q, i) =>
         q.type === "multiple" ? (
-          <MultipleChoiceQuestion question={q} key={q.question} />
+          <MultipleChoiceQuestion question={q} key={q.question} index={i + 1} />
         ) : (
-          <BooleanQuestion question={q} key={q.question} />
+          <BooleanQuestion question={q} key={q.question} index={i + 1} />
         )
       )}
     </div>

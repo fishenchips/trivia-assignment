@@ -1,9 +1,9 @@
 export type Questions = {
   response_code: number;
-  results: Array<Results> | [];
+  results: Array<Result> | [];
 };
 
-type Results = {
+export type Result = {
   category: string;
   correct_answer: string;
   difficulty: string;

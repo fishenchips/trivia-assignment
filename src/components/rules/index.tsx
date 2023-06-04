@@ -4,6 +4,7 @@ import { Category } from "@/components/rules/category";
 import { Difficulty } from "@/components/rules/difficulty";
 import { useGetQuestions } from "@/queries/get-questions";
 import { ResetToken } from "../reset-token";
+import { Questions } from "./questions";
 
 export const Rules = () => {
   const difficultyRef = useRef<HTMLSelectElement>(null);
@@ -20,7 +21,7 @@ export const Rules = () => {
 
   console.log(questions);
 
-  if (questions?.response_code === 4) {
+  if (questions?.response_code === 3 || questions?.response_code === 4) {
     return <ResetToken />;
   }
 
@@ -34,12 +35,7 @@ export const Rules = () => {
       </div>
       <div className="my-2">
         {loadingQuestions && <p>Loading questions</p>}
-        {questions &&
-          questions.results.map(({ question }) => (
-            <div className="my-4" key={question}>
-              <p>{question}</p>
-            </div>
-          ))}
+        {questions && <Questions questions={questions.results} />}
       </div>
     </div>
   );

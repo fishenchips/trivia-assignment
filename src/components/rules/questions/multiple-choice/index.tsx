@@ -28,6 +28,11 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
     setAnswers(shuffled);
   }, [correct_answer, incorrect_answers]);
 
+  const handleSetAnswer = (answer: string) => {
+    setGuess(answer);
+    answer === correct_answer ? setAnswer(true) : setAnswer(false);
+  };
+
   console.log(answer);
 
   return (
@@ -39,10 +44,7 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
           {answers?.map((answer) => (
             <p
               className="m-2 p-2 rounded bg-slate-300 cursor-pointer hover:bg-slate-500"
-              onClick={() => {
-                setGuess(answer);
-                answer === correct_answer ? setAnswer(true) : setAnswer(false);
-              }}
+              onClick={() => handleSetAnswer(answer)}
               key={answer}
             >
               {answer}

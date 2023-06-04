@@ -1,6 +1,12 @@
+import { RefObject } from "react";
+
 import { useGetCategories } from "@/queries/get-categories";
 
-export const Category = () => {
+interface Props {
+  categoryRef: RefObject<HTMLSelectElement>;
+}
+
+export const Category: React.FC<Props> = ({ categoryRef }) => {
   const { data: categories, isLoading } = useGetCategories();
 
   if (isLoading) {
@@ -12,10 +18,7 @@ export const Category = () => {
   }
 
   return (
-    <select>
-      <option value="" disabled selected>
-        Select Cateogory
-      </option>
+    <select ref={categoryRef}>
       {categories &&
         categories.trivia_categories.map(({ id, name }) => (
           <option key={id} value={id}>

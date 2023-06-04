@@ -1,42 +1,50 @@
-import { SyntheticEvent, useRef } from "react";
+import { SyntheticEvent, useRef, useState } from "react";
 
 import { Category } from "@/components/rules/category";
 import { Difficulty } from "@/components/rules/difficulty";
-import { useGetQuestions } from "@/queries/get-questions";
-import { ResetToken } from "../reset-token";
 import { Questions } from "./questions";
 
 export const Rules = () => {
+  const categoryRef = useRef<HTMLSelectElement>(null);
   const difficultyRef = useRef<HTMLSelectElement>(null);
-
-  const { data: questions, isLoading: loadingQuestions } = useGetQuestions(
-    20,
-    ""
-  );
+  const [triviaFilter, setTriviaFilter] = useState<{
+    category: string;
+    difficulty: string;
+  }>({
+    category: "",
+    difficulty: "",
+  });
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log(difficultyRef.current?.value);
+
+    setTriviaFilter({
+      category: categoryRef.current?.value as string,
+      difficulty: difficultyRef.current?.value as string,
+    });
   };
 
-  console.log(questions);
-
-  if (questions?.response_code === 3 || questions?.response_code === 4) {
-    return <ResetToken />;
-  }
-
   return (
-    <div>
-      <h4>Rules</h4>
-      <div className="flex">
-        <Category />
-        <Difficulty difficultyRef={difficultyRef} />
-        <button onClick={handleSubmit}>Go</button>
-      </div>
-      <div className="my-2">
-        {loadingQuestions && <p>Loading questions</p>}
-        {questions && <Questions questions={questions.results} />}
-      </div>
-    </div>
+    <>
+      {triviaFilter.category === "" ? (
+        <>
+          <div className="mb-8">
+            <h2>Let&apos;s play a game.</h2>
+          </div>
+          <h4>Rules</h4>
+          <div className="flex">
+            <Category categoryRef={categoryRef} />
+            <Difficulty difficultyRef={difficultyRef} />
+            <button onClick={handleSubmit}>Play</button>
+          </div>
+        </>
+      ) : (
+        <div className="my-2">
+          {triviaFilter.category.length > 0 && (
+            <Questions filter={triviaFilter} />
+          )}
+        </div>
+      )}
+    </>
   );
 };

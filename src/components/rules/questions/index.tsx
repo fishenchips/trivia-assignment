@@ -1,4 +1,3 @@
-import type { Result } from "@/queries/get-questions/types";
 import { MultipleChoiceQuestion } from "./multiple-choice";
 import { BooleanQuestion } from "./boolean";
 import { useGetQuestions } from "@/queries/get-questions";
@@ -29,14 +28,20 @@ export const Questions: React.FC<Props> = ({
   console.log(questions);
 
   return (
-    <div>
-      {questions?.results.map((q, i) =>
-        q.type === "multiple" ? (
-          <MultipleChoiceQuestion question={q} key={q.question} index={i + 1} />
-        ) : (
-          <BooleanQuestion question={q} key={q.question} index={i + 1} />
-        )
-      )}
-    </div>
+    <>
+      <div>
+        {questions?.results.map((q, i) =>
+          q.type === "multiple" ? (
+            <MultipleChoiceQuestion
+              question={q}
+              key={q.question}
+              index={i + 1}
+            />
+          ) : (
+            <BooleanQuestion question={q} key={q.question} index={i + 1} />
+          )
+        )}
+      </div>
+    </>
   );
 };

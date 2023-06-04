@@ -39,10 +39,20 @@ export const Rules = () => {
           </div>
         </>
       ) : (
-        <div className="my-2">
-          {triviaFilter.category.length > 0 && (
-            <Questions filter={triviaFilter} />
-          )}
+        <div>
+          <div className="mb-20">
+            <p
+              className="p-2 float-right rounded bg-black text-white cursor-pointer"
+              onClick={() => window.location.reload()}
+            >
+              Exit
+            </p>
+          </div>
+          <div>
+            {triviaFilter.category.length > 0 && (
+              <Questions filter={triviaFilter} />
+            )}
+          </div>
         </div>
       )}
     </>

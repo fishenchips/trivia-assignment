@@ -29,6 +29,14 @@ export const Questions: React.FC<Props> = ({
 
   return (
     <>
+      <div className="mb-20">
+        <p
+          className="py-1 px-2 float-right rounded bg-black text-white cursor-pointer"
+          onClick={() => window.location.reload()}
+        >
+          Exit
+        </p>
+      </div>
       <div>
         {questions?.results.map((q, i) =>
           q.type === "multiple" ? (

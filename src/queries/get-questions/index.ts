@@ -15,7 +15,7 @@ const getQuestions = async (
   );
 
   const response = await fetch(
-    `https://opentdb.com/api.php?amount=${amount}&category=${category}&token=${sessionToken}${
+    `https://opentdb.com/api.php?amount=${amount}&category=${category}&token=${sessionToken}&encode=url3986${
       difficulty ? `&difficulty=${difficulty}` : ``
     }`
   );

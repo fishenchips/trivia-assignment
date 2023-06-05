@@ -25,8 +25,6 @@ export const Questions: React.FC<Props> = ({
     return <ResetToken />;
   }
 
-  console.log(questions);
-
   return (
     <>
       <div className="mb-20">

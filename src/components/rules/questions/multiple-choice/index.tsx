@@ -24,7 +24,6 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
       }))
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
-
     setAnswers(shuffled);
   }, [correct_answer, incorrect_answers]);
 
@@ -33,13 +32,11 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
     answer === correct_answer ? setAnswer(true) : setAnswer(false);
   };
 
-  console.log(answer);
-
   return (
     <div className="my-4 p-8 rounded bg-slate-200">
       <p className="mb-2 text-sm text-sky-400">Question #{index}</p>
       <div className="space-y-10">
-        <p className="text-center text-lg">{question}</p>
+        <p className="text-center text-lg">{decodeURIComponent(question)}</p>
         <div className="flex flex-wrap justify-center gap-x-8">
           {answers?.map((answer) => (
             <p
@@ -47,7 +44,7 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
               onClick={() => handleSetAnswer(answer)}
               key={answer}
             >
-              {answer}
+              {decodeURIComponent(answer)}
             </p>
           ))}
         </div>

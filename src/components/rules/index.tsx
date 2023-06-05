@@ -29,9 +29,9 @@ export const Rules = () => {
       {triviaFilter.category === "" ? (
         <>
           <div className="mb-8">
-            <h2>Let&apos;s play a game.</h2>
+            <h2 className="text-xl">Let&apos;s play a game.</h2>
           </div>
-          <h4>Rules</h4>
+          <h4 className="text-lg text-gray-700 font-normal">Rules</h4>
           <div className="flex">
             <Category categoryRef={categoryRef} />
             <Difficulty difficultyRef={difficultyRef} />

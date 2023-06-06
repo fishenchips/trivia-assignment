@@ -27,17 +27,21 @@ export const Rules = () => {
   return (
     <>
       {triviaFilter.category === "" ? (
-        <>
-          <div className="mb-8">
+        <div className="mt-10 text-center">
+          <div className="mb-8 text-gray-700">
             <h2 className="text-xl">Let&apos;s play a game.</h2>
           </div>
-          <h4 className="text-lg text-gray-700 font-normal">Rules</h4>
-          <div className="flex">
+          <div className="flex my-4 items-end gap-x-4">
             <Category categoryRef={categoryRef} />
             <Difficulty difficultyRef={difficultyRef} />
-            <button onClick={handleSubmit}>Play</button>
+            <button
+              className="px-5 py-2 bg-slate-200 border border-slate-200 rounded hover:bg-slate-300 hover:border-slate-300"
+              onClick={handleSubmit}
+            >
+              Play
+            </button>
           </div>
-        </>
+        </div>
       ) : (
         <div className="w-full px-20">
           {triviaFilter.category.length > 0 && (

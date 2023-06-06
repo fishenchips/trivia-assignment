@@ -19,11 +19,15 @@ export const Questions: React.FC<Props> = ({
   } = useGetQuestions(+category, difficulty);
 
   if (loadingQuestions) {
-    return <p>Loading questions</p>;
+    return <p className="text-center">Loading questions</p>;
   }
 
   if (!questions || isError) {
-    return <p>Something went wrong, please reload the page</p>;
+    return (
+      <p className="text-center">
+        Something went wrong, please reload the page
+      </p>
+    );
   }
 
   if (questions?.response_code === 3 || questions?.response_code === 4) {
@@ -33,12 +37,14 @@ export const Questions: React.FC<Props> = ({
   return (
     <>
       <div>
-        {index < questions.results.length && (
+        {index < questions.results.length ? (
           <Question
             question={questions?.results[index]}
             index={index + 1}
             setIndex={setIndex}
           />
+        ) : (
+          <p>game done</p>
         )}
       </div>
     </>

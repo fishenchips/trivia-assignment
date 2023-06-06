@@ -9,7 +9,7 @@ export const ResetToken = () => {
   };
 
   return (
-    <div>
+    <div className="text-center">
       <p>You need to reset your token to play.</p>
       <button onClick={handleResetToken}>Reset</button>
     </div>

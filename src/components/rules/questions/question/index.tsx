@@ -56,7 +56,13 @@ export const Question: React.FC<Props> = ({
     <div>
       <div className="flex justify-between my-10">
         <div>
-          <p className="text-lg text-gray-700	">{timer}</p>
+          <p
+            className={`text-lg text-gray-700 ${
+              timer < 6 ? "scale-150 font-bold text-red-500" : ""
+            }`}
+          >
+            {timer}
+          </p>
         </div>
         <div>
           <p

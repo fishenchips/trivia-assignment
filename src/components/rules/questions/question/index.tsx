@@ -55,9 +55,18 @@ export const Question: React.FC<Props> = ({
     setTimer(31);
   };
 
+  if (timer === 0) {
+    return (
+      <div className="mt-20">
+        <p className="text-center text-lg">Time is up! Onto the next one..</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="flex justify-between my-10">
+        <div></div>
         <div>
           <p
             className={`text-lg text-gray-700 ${

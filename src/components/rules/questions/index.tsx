@@ -37,10 +37,6 @@ export const Questions: React.FC<Props> = ({
     return <ResetToken />;
   }
 
-  console.log({ answer });
-
-  console.log({ correctAnswers });
-
   return (
     <>
       <div>

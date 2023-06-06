@@ -8,7 +8,7 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
   onSetAnswer,
 }) => {
   return (
-    <div className="flex flex-wrap justify-center gap-x-20">
+    <div className="flex flex-wrap justify-evenly gap-x-20 gap-y-5">
       {answers?.map((answer) => (
         <div key={answer}>
           <p

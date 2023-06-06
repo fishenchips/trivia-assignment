@@ -8,17 +8,19 @@ interface Props {
   question: Result;
   index: number;
   setIndex: Dispatch<SetStateAction<number>>;
+  setAnswer: Dispatch<SetStateAction<boolean | undefined>>;
+  setCorrectAnswers: Dispatch<SetStateAction<number>>;
 }
 
 export const Question: React.FC<Props> = ({
   question: { question, correct_answer, incorrect_answers, type },
   index,
   setIndex,
+  setAnswer,
+  setCorrectAnswers,
 }) => {
   const [timer, setTimer] = useState(31);
   const [answers, setAnswers] = useState<Array<string>>();
-  const [guess, setGuess] = useState<string>();
-  const [answer, setAnswer] = useState<boolean>();
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -46,8 +48,9 @@ export const Question: React.FC<Props> = ({
   }, [correct_answer, incorrect_answers]);
 
   const handleSetAnswer = (answer: string): void => {
-    setGuess(answer);
-    answer === correct_answer ? setAnswer(true) : setAnswer(false);
+    answer === correct_answer
+      ? (setAnswer(true), setCorrectAnswers((prev) => prev + 1))
+      : setAnswer(false);
     setIndex((prev) => prev + 1);
     setTimer(31);
   };

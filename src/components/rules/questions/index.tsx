@@ -1,7 +1,8 @@
 import { useGetQuestions } from "@/queries/get-questions";
 import { ResetToken } from "@/components/reset-token";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Question } from "./question";
+import { Results } from "./results";
 
 interface Props {
   filter: { category: string; difficulty: string };
@@ -11,6 +12,8 @@ export const Questions: React.FC<Props> = ({
   filter: { category, difficulty },
 }) => {
   const [index, setIndex] = useState(0);
+  const [answer, setAnswer] = useState<boolean>();
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
 
   const {
     data: questions,
@@ -34,6 +37,10 @@ export const Questions: React.FC<Props> = ({
     return <ResetToken />;
   }
 
+  console.log({ answer });
+
+  console.log({ correctAnswers });
+
   return (
     <>
       <div>
@@ -42,9 +49,11 @@ export const Questions: React.FC<Props> = ({
             question={questions?.results[index]}
             index={index + 1}
             setIndex={setIndex}
+            setAnswer={setAnswer}
+            setCorrectAnswers={setCorrectAnswers}
           />
         ) : (
-          <p>game done</p>
+          <Results correctAnswers={correctAnswers} />
         )}
       </div>
     </>

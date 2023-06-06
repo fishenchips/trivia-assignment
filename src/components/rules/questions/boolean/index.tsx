@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
 import { Result } from "@/queries/get-questions/types";
 
 interface Props {
   question: Result;
   index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
 }
 
 export const BooleanQuestion: React.FC<Props> = ({
   question: { question, correct_answer },
   index,
+  setIndex,
 }) => {
   const [guess, setGuess] = useState<string>();
   const [answer, setAnswer] = useState<boolean>();
@@ -17,6 +19,7 @@ export const BooleanQuestion: React.FC<Props> = ({
   const handleSetAnswer = (answer: string) => {
     setGuess(answer);
     answer === correct_answer ? setAnswer(true) : setAnswer(false);
+    setIndex((prev) => prev + 1);
   };
 
   return (

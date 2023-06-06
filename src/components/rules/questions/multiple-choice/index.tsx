@@ -1,14 +1,16 @@
 import { Result } from "@/queries/get-questions/types";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface Props {
   question: Result;
   index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
 }
 
 export const MultipleChoiceQuestion: React.FC<Props> = ({
   question: { question, correct_answer, incorrect_answers },
   index,
+  setIndex,
 }) => {
   const [answers, setAnswers] = useState<Array<string>>();
   const [guess, setGuess] = useState<string>();
@@ -30,6 +32,7 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
   const handleSetAnswer = (answer: string) => {
     setGuess(answer);
     answer === correct_answer ? setAnswer(true) : setAnswer(false);
+    setIndex((prev) => prev + 1);
   };
 
   return (

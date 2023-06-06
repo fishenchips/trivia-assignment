@@ -2,6 +2,7 @@ import { MultipleChoiceQuestion } from "./multiple-choice";
 import { BooleanQuestion } from "./boolean";
 import { useGetQuestions } from "@/queries/get-questions";
 import { ResetToken } from "@/components/reset-token";
+import { useEffect, useState } from "react";
 
 interface Props {
   filter: { category: string; difficulty: string };
@@ -10,15 +11,33 @@ interface Props {
 export const Questions: React.FC<Props> = ({
   filter: { category, difficulty },
 }) => {
+  const [index, setIndex] = useState(0);
+
   const { data: questions, isLoading: loadingQuestions } = useGetQuestions(
     +category,
     difficulty
   );
 
-  console.log(+category, difficulty);
+  useEffect(() => {
+    const id = setInterval(() => setIndex((prev) => prev + 1), 31000);
+
+    if (index === questions?.results.length) {
+      return () => {
+        clearInterval(id);
+      };
+    }
+
+    return () => {
+      clearInterval(id);
+    };
+  }, [index, questions]);
 
   if (loadingQuestions) {
     return <p>Loading questions</p>;
+  }
+
+  if (!questions) {
+    return <p>Something went wrong</p>;
   }
 
   if (questions?.response_code === 3 || questions?.response_code === 4) {
@@ -36,7 +55,23 @@ export const Questions: React.FC<Props> = ({
         </p>
       </div>
       <div>
-        {questions?.results.map((q, i) =>
+        {index < questions.results.length &&
+        questions?.results[index].type === "multiple" ? (
+          <MultipleChoiceQuestion
+            question={questions?.results[index]}
+            index={index + 1}
+            setIndex={setIndex}
+          />
+        ) : (
+          <BooleanQuestion
+            question={questions?.results[index]}
+            index={index + 1}
+            setIndex={setIndex}
+          />
+        )}
+      </div>
+      <div>
+        {/*  {questions.results.map((q, i) =>
           q.type === "multiple" ? (
             <MultipleChoiceQuestion
               question={q}
@@ -46,7 +81,7 @@ export const Questions: React.FC<Props> = ({
           ) : (
             <BooleanQuestion question={q} key={q.question} index={i + 1} />
           )
-        )}
+        )} */}
       </div>
     </>
   );

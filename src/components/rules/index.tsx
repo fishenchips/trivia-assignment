@@ -39,7 +39,7 @@ export const Rules = () => {
           </div>
         </>
       ) : (
-        <div>
+        <div className="w-full px-20">
           {triviaFilter.category.length > 0 && (
             <Questions filter={triviaFilter} />
           )}

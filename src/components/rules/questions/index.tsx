@@ -12,17 +12,18 @@ export const Questions: React.FC<Props> = ({
 }) => {
   const [index, setIndex] = useState(0);
 
-  const { data: questions, isLoading: loadingQuestions } = useGetQuestions(
-    +category,
-    difficulty
-  );
+  const {
+    data: questions,
+    isLoading: loadingQuestions,
+    isError,
+  } = useGetQuestions(+category, difficulty);
 
   if (loadingQuestions) {
     return <p>Loading questions</p>;
   }
 
-  if (!questions) {
-    return <p>Something went wrong</p>;
+  if (!questions || isError) {
+    return <p>Something went wrong, please reload the page</p>;
   }
 
   if (questions?.response_code === 3 || questions?.response_code === 4) {
@@ -31,14 +32,6 @@ export const Questions: React.FC<Props> = ({
 
   return (
     <>
-      <div className="mb-20">
-        <p
-          className="py-1 px-2 float-right rounded bg-black text-white cursor-pointer"
-          onClick={() => window.location.reload()}
-        >
-          Exit
-        </p>
-      </div>
       <div>
         {index < questions.results.length && (
           <Question

@@ -15,7 +15,7 @@ export const Question: React.FC<Props> = ({
   index,
   setIndex,
 }) => {
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(31);
   const [answers, setAnswers] = useState<Array<string>>();
   const [guess, setGuess] = useState<string>();
   const [answer, setAnswer] = useState<boolean>();
@@ -26,7 +26,7 @@ export const Question: React.FC<Props> = ({
 
       if (timer === 0) {
         setIndex((prev) => prev + 1);
-        setTimer(5);
+        setTimer(31);
       }
     }, 1000);
     return () => clearInterval(countdown);
@@ -45,18 +45,28 @@ export const Question: React.FC<Props> = ({
     setAnswers(shuffled);
   }, [correct_answer, incorrect_answers]);
 
-  const handleSetAnswer = (answer: string) => {
+  const handleSetAnswer = (answer: string): void => {
     setGuess(answer);
     answer === correct_answer ? setAnswer(true) : setAnswer(false);
     setIndex((prev) => prev + 1);
-    setTimer(5);
+    setTimer(31);
   };
-
-  console.log({ timer });
 
   return (
     <div>
-      <p>{timer}</p>
+      <div className="flex justify-between my-10">
+        <div>
+          <p className="text-lg text-gray-700	">{timer}</p>
+        </div>
+        <div>
+          <p
+            className="py-1 px-2 rounded bg-black text-white cursor-pointer"
+            onClick={() => window.location.reload()}
+          >
+            Exit
+          </p>
+        </div>
+      </div>
       <div className="my-4 p-8 rounded bg-slate-200">
         <p className="mb-2 text-sm text-sky-400">Question #{index}</p>
         <div className="space-y-10">

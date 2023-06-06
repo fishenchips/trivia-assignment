@@ -8,17 +8,17 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
   onSetAnswer,
 }) => {
   return (
-    <>
+    <div className="flex flex-wrap justify-center gap-x-20">
       {answers?.map((answer) => (
-        <div className="flex flex-wrap justify-center gap-x-8" key={answer}>
+        <div key={answer}>
           <p
-            className="m-2 p-2 rounded bg-slate-300 cursor-pointer hover:bg-slate-500"
+            className="m-2 px-5 py-2 rounded bg-slate-300 cursor-pointer hover:bg-slate-500"
             onClick={() => onSetAnswer(answer)}
           >
             {decodeURIComponent(answer)}
           </p>
         </div>
       ))}
-    </>
+    </div>
   );
 };

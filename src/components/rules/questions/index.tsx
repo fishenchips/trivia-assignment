@@ -1,8 +1,6 @@
-import { MultipleChoiceQuestion } from "./question/multiple-choice";
-import { BooleanQuestion } from "./question/boolean";
 import { useGetQuestions } from "@/queries/get-questions";
 import { ResetToken } from "@/components/reset-token";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Question } from "./question";
 
 interface Props {
@@ -43,28 +41,11 @@ export const Questions: React.FC<Props> = ({
       </div>
       <div>
         {index < questions.results.length && (
-          <>
-            <Question
-              question={questions?.results[index]}
-              index={index + 1}
-              setIndex={setIndex}
-              /*   setTimer={setTimer} */
-            />
-            {/*  <p>{timer}</p> */}
-            {/*  {questions?.results[index].type === "multiple" ? (
-              <MultipleChoiceQuestion
-                question={questions?.results[index]}
-                index={index + 1}
-                setIndex={setIndex}
-              />
-            ) : (
-              <BooleanQuestion
-                question={questions?.results[index]}
-                index={index + 1}
-                setIndex={setIndex}
-              />
-            )} */}
-          </>
+          <Question
+            question={questions?.results[index]}
+            index={index + 1}
+            setIndex={setIndex}
+          />
         )}
       </div>
     </>

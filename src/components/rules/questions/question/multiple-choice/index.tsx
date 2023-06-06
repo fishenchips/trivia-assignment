@@ -8,11 +8,11 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({
   onSetAnswer,
 }) => {
   return (
-    <div className="flex flex-wrap justify-evenly gap-x-20 gap-y-5">
+    <div className="justify-items-stretch">
       {answers?.map((answer) => (
-        <div key={answer}>
+        <div key={answer} className="w-full mx-auto text-center lg:w-1/3">
           <p
-            className="m-2 px-5 py-2 rounded bg-slate-300 cursor-pointer hover:bg-slate-500"
+            className="my-4 px-5 py-2 rounded bg-slate-300 cursor-pointer hover:bg-slate-500"
             onClick={() => onSetAnswer(answer)}
           >
             {decodeURIComponent(answer)}

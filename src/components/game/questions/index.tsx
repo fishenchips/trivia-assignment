@@ -1,6 +1,7 @@
+import { useState } from "react";
+
 import { useGetQuestions } from "@/queries/get-questions";
 import { ResetToken } from "@/components/reset-token";
-import { useEffect, useState } from "react";
 import { Question } from "./question";
 import { Results } from "./results";
 
@@ -11,7 +12,7 @@ interface Props {
 export const Questions: React.FC<Props> = ({
   filter: { category, difficulty },
 }) => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState<number>(0);
   const [answer, setAnswer] = useState<boolean>();
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
 

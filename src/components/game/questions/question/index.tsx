@@ -19,7 +19,7 @@ export const Question: React.FC<Props> = ({
   setAnswer,
   setCorrectAnswers,
 }) => {
-  const [timer, setTimer] = useState(31);
+  const [timer, setTimer] = useState<number>(31);
   const [answers, setAnswers] = useState<Array<string>>();
 
   useEffect(() => {
@@ -35,15 +35,15 @@ export const Question: React.FC<Props> = ({
   });
 
   useEffect(() => {
-    const array = incorrect_answers.concat(correct_answer);
+    const answers = incorrect_answers.concat(correct_answer);
 
-    const shuffled = array
-      .map((value) => ({
-        value,
+    const shuffled = answers
+      .map((answer) => ({
+        answer,
         sort: Math.random(),
       }))
       .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
+      .map(({ answer }) => answer);
     setAnswers(shuffled);
   }, [correct_answer, incorrect_answers]);
 
@@ -66,7 +66,7 @@ export const Question: React.FC<Props> = ({
   return (
     <div>
       <div className="flex justify-between my-10">
-        <div></div>
+        <div />
         <div>
           <p
             className={`text-lg text-gray-700 ${

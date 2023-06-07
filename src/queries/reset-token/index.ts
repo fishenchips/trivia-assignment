@@ -1,4 +1,4 @@
-import { ResetTokenResponse } from "./types";
+import type { ResetTokenResponse } from "./types";
 
 export const resetToken = async (): Promise<ResetTokenResponse> => {
   const sessionToken = localStorage.getItem("sessionToken");

@@ -1,4 +1,6 @@
-export const resetToken = async () => {
+import { ResetTokenResponse } from "./types";
+
+export const resetToken = async (): Promise<ResetTokenResponse> => {
   const sessionToken = localStorage.getItem("sessionToken");
 
   const response = fetch(

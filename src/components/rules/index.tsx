@@ -15,7 +15,7 @@ export const Rules = () => {
     difficulty: "",
   });
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
 
     setTriviaFilter({

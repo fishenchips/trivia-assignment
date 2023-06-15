@@ -7,11 +7,6 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Trivia game",
-  description: "Play trivia games, various categories and difficulty.",
-};
-
 export default function RootLayout({
   children,
 }: {
